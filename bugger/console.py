@@ -262,8 +262,12 @@ class TelnetInteractiveConsoleServer(object):
                     self.client_connect(client)
 
             for client in rl:
+                bytes = None
                 with self.cleanup_client(client):
                     bytes = client.recv(1024)
+
+                if bytes is None:
+                    continue
 
                 if bytes == '': # client disconnect
                     self.client_disconnect(client)
