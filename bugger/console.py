@@ -267,6 +267,7 @@ class TelnetInteractiveConsoleServer(object):
                     bytes = client.recv(1024)
 
                 if bytes is None:
+                    # Continue when client.recv failed
                     continue
 
                 if bytes == '': # client disconnect
