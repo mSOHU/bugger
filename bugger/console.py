@@ -301,13 +301,13 @@ class TelnetInteractiveConsoleServer(object):
         try:
             yield
         except Exception as err:
-            logger.exception('Cleaning up client')
+            logger.warning('Cleaning up client')
             console = self.client_sockets.pop(client)
             try:
                 console.close()
                 client.close()
             except Exception as err:
-                logger.exception('Unexpected error when cleaning up client %r', err)
+                logger.warning('Unexpected error when cleaning up client %r', err)
 
 if __name__ == '__main__':
     print "Starting python telnet server on port 7070"
